@@ -47,6 +47,14 @@ Example focus areas:
 
 ---
 
+## Examples
+
+- Basic flow: idle → loading → success ✅
+- Error flow with retry (planned)
+- Empty data state (planned)
+
+---
+
 ## Current focus
 
 - Defining UI state shapes with TypeScript union types
@@ -80,3 +88,9 @@ The focus is on clarity and correctness rather than completeness.
 
 The structure is intentionally kept flexible to allow experimentation
 as understanding of TypeScript and React patterns grows.
+
+## Getting started
+
+```bash
+npm install
+npm run dev
