@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# UI State Playground (WIP)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript playground for experimenting with how common UI states
+are modeled and rendered in a predictable way.
 
-Currently, two official plugins are available:
+Instead of focusing on features, this project focuses on *how UI behaves*
+when things are idle, loading, successful, or broken.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## What this project explores
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project is built around a simple question:
 
-## Expanding the ESLint configuration
+**What states can a UI be in, and how can TypeScript help prevent invalid ones?**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application consists of small, isolated examples that demonstrate:
+- explicit UI states instead of implicit boolean flags
+- safe state transitions using reducer patterns
+- components that only receive the data they actually need
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Core ideas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- UI state is modeled with union types instead of loose objects
+- State transitions are handled with `useReducer`
+- Each UI state has a clear visual representation
+- Invalid UI combinations are prevented at compile time
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Example focus areas:
+- loading vs idle confusion
+- error states with missing data
+- success states that assume too much
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Current focus
+
+- Defining UI state shapes with TypeScript union types
+- Implementing reducer-based state transitions
+- Splitting UI into small, typed components
+- Practicing typed props and event handling
+
+---
+
+## Planned experiments
+
+- Simulated async flows (success, error, slow responses)
+- Comparing different ways to model the same UI state
+- Reusable layout components using typed `children`
+- Visualizing how small state changes affect UI behavior
+
+---
+
+## Tech stack
+
+- React
+- TypeScript
+- Vite
+
+---
+
+## Project status
+
+This is an ongoing learning project developed incrementally.
+The focus is on clarity and correctness rather than completeness.
+
+The structure is intentionally kept flexible to allow experimentation
+as understanding of TypeScript and React patterns grows.
