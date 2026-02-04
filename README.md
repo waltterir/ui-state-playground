@@ -1,75 +1,92 @@
-# UI State Playground (WIP)
+# UI State Playground
 
-A React + TypeScript playground for experimenting with how common UI states
-are modeled and rendered in a predictable way.
+> ⚠️ **Work in progress**  
+> The core ideas and implementation are in place, but visual assets and final
+> polish (such as demo previews) are still being finalized.
 
-Instead of focusing on features, this project focuses on _how UI behaves_
-when things are idle, loading, successful, or broken.
+A small React + TypeScript project focused on **explicit UI state modeling**.
+
+The purpose of this project is to explore how common UI states (idle, loading,
+success, error) can be modeled in a way that makes invalid UI combinations
+impossible by design.
+
+Rather than building features, this project focuses on **clarity, correctness,
+and state-driven rendering**.
 
 ---
 
-### Example: basic loading → success flow
+## Why this project exists
 
-![Basic UI state transition](./src/assets/ui-states.gif)
+In many applications, UI state is modeled using loosely coupled boolean flags such
+as `isLoading` and `hasError`. While simple at first, this approach easily leads
+to broken UI states where loading, error, and content overlap.
 
-This example demonstrates a simple reducer-driven UI state transition.
-The UI explicitly moves from an idle state into loading and then into success,
-making invalid UI combinations impossible by design.
+This project explores an alternative approach:
 
-This is an initial example. Error states and retries will be added incrementally.
+- modeling UI state explicitly with TypeScript union types
+- handling state transitions through a reducer
+- making invalid UI states unrepresentable by design
 
-## What this project explores
+---
 
-This project is built around a simple question:
+## Visual comparison: bad vs good UI state modeling
 
-**What states can a UI be in, and how can TypeScript help prevent invalid ones?**
+The difference between implicit and explicit UI state modeling becomes most
+obvious when visualized.
 
-The application consists of small, isolated examples that demonstrate:
+| Bad model (boolean flags)        | Good model (explicit UI states)   |
+| -------------------------------- | --------------------------------- |
+| ![](./src/assets/./BadModel.gif) | ![](./src/assets/./GoodModel.gif) |
 
-- explicit UI states instead of implicit boolean flags
-- safe state transitions using reducer patterns
-- components that only receive the data they actually need
+|
+
+**Bad model:**  
+Multiple independent boolean flags (`loading`, `error`) allow invalid UI
+combinations. For example, loading can remain active even when an error occurs.
+
+**Good model:**  
+UI state is represented as a single discriminated union. Only one valid state
+(idle, loading, success, error) can exist at a time, making the UI predictable
+by design.
 
 ---
 
 ## Core ideas
 
-- UI state is modeled with union types instead of loose objects
+- UI state is modeled with TypeScript union types instead of loose objects
 - State transitions are handled with `useReducer`
-- Each UI state has a clear visual representation
-- Invalid UI combinations are prevented at compile time
+- Rendering is driven by a single explicit `status` field
+- Invalid UI combinations are prevented by design through the type system
 
-Example focus areas:
+These ideas are explored through examples focusing on:
 
 - loading vs idle confusion
-- error states with missing data
-- success states that assume too much
+- error states that overlap with loading
+- predictable success and error rendering
 
 ---
 
-## Examples
+## Implementation overview
 
-- Basic flow: idle → loading → success ✅
-- Error flow with retry (planned)
-- Empty data state (planned)
+- **GoodModel**  
+  Uses a reducer and a discriminated union (`UiStatus`) to ensure only valid UI
+  states can be represented and rendered.
 
----
+- **BadModel**  
+  Uses multiple boolean flags to intentionally demonstrate how invalid and
+  overlapping UI states can occur.
 
-## Current focus
-
-- Defining UI state shapes with TypeScript union types
-- Implementing reducer-based state transitions
-- Splitting UI into small, typed components
-- Practicing typed props and event handling
+- **ManageModels**  
+  Switches between the two implementations to allow direct visual comparison.
 
 ---
 
-## Planned experiments
+## What this project demonstrates
 
-- Simulated async flows (success, error, slow responses)
-- Comparing different ways to model the same UI state
-- Reusable layout components using typed `children`
-- Visualizing how small state changes affect UI behavior
+- How TypeScript can enforce correct UI state modeling
+- Why reducer-driven state transitions are safer than ad-hoc boolean flags
+- How explicit UI states simplify rendering logic
+- How broken UI states emerge from implicit state modeling
 
 ---
 
@@ -83,14 +100,18 @@ Example focus areas:
 
 ## Project status
 
-This is an ongoing learning project developed incrementally.
-The focus is on clarity and correctness rather than completeness.
+This project has reached its intended conclusion.
 
-The structure is intentionally kept flexible to allow experimentation
-as understanding of TypeScript and React patterns grows.
+The goal was to explore and compare different ways of modeling UI state in React
+using TypeScript. That goal has been achieved, and no further features are planned.
+
+The repository is kept as a reference and learning artifact.
+
+---
 
 ## Getting started
 
 ```bash
 npm install
 npm run dev
+```
