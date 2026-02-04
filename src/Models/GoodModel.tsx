@@ -21,7 +21,7 @@ export const GoodModel = () => {
 
           {state.status === "success" && <p>Request succeeded!</p>}
 
-          {state.status === "error" && <p>Request failed. Please try again.</p>}
+          {state.status === "error" && <p>{state.message}</p>}
         </div>
 
         <button
@@ -34,6 +34,18 @@ export const GoodModel = () => {
         >
           Simulate request
         </button>
+
+        <button
+          onClick={() => {
+            dispatch({ type: "submit" });
+            setTimeout(() => {
+              dispatch({ type: "fail", error: "Request failed." });
+            }, 1000);
+          }}
+        >
+          Simulate error
+        </button>
+
         <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
       </StateInspector>
     </>
