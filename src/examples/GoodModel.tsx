@@ -1,13 +1,16 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { uiReducer, type UiStatus } from "../state/uiState";
 
 const initialState: UiStatus = { status: "idle" };
 
-export const ShowExample = () => {
+export const GoodModel = () => {
   const [state, dispatch] = useReducer(uiReducer, initialState);
   return (
     <>
       <div>
+        <h1 id="badModel">
+          <em>Good Model</em>
+        </h1>
         {state.status === "idle" && (
           <p>
             Paina <em>"Simulate Request"</em> Aloittaaksesi. Tämä simuloi

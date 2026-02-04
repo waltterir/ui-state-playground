@@ -1,10 +1,10 @@
 import "./App.css";
-import { ShowExample } from "./examples/Example1";
+import { ShowModels } from "./examples/ManageModels";
 
 function App() {
   return (
     <>
-      <ShowExample />
+      <ShowModels />
     </>
   );
 }
