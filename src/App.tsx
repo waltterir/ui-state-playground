@@ -1,5 +1,5 @@
 import "./App.css";
-import { ShowModels } from "./examples/ManageModels";
+import { ShowModels } from "./ManageModels/ManageModels";
 
 function App() {
   return (

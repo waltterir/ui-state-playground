@@ -1,5 +1,5 @@
-import { GoodModel } from "./GoodModel";
-import { BadModel } from "./BadModel";
+import { GoodModel } from "../Models/GoodModel";
+import { BadModel } from "../Models/BadModel";
 import { useState } from "react";
 
 export const ShowModels = () => {
