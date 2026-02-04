@@ -1,67 +1,44 @@
 # UI State Playground
 
-> ⚠️ **Work in progress**
-> The core ideas and examples are in place,
-> while visual presentation and additional comparisons are still evolving.
-
 A small React + TypeScript project focused on **explicit UI state modeling**.
 
-The purpose of this project is to explore how common UI states (idle, loading,
-success, error) can be modeled in a way that makes invalid UI combinations
-impossible by design.
+This playground demonstrates how common UI states (idle, loading, success,
+error) can be modeled in a way that makes invalid UI combinations impossible by design.
 
 Rather than building features, this project focuses on **clarity, correctness,
 and state-driven rendering**.
 
 ---
 
-## Why this project exists
+## Demo
 
-In many applications, UI state is modeled using loosely coupled boolean flags such
-as `isLoading` and `hasError`. While simple at first, this approach easily leads
-to broken UI states where loading, error, and content overlap.
+**Live demo:**
+[ui-state-playground.vercel.app](https://ui-state-playground.vercel.app/)
 
-This project explores an alternative approach:
+Preview:
 
-- modeling UI state explicitly with TypeScript union types
-- handling state transitions through a reducer
-- making invalid UI states unrepresentable by design
+![](./src/assets/GoodModel.gif)
 
 ---
 
-## Visual comparison: bad vs good UI state modeling
+## What makes this different?
 
-The difference between implicit and explicit UI state modeling becomes most
-obvious when visualized.
+This project highlights the difference between **implicit** and **explicit**
+UI state modeling:
 
-| Bad model (boolean flags)        | Good model (explicit UI states)   |
-| -------------------------------- | --------------------------------- |
-| ![](./src/assets/./BadModel.gif) | ![](./src/assets/./GoodModel.gif) |
-
-
-**Bad model:**  
-Multiple independent boolean flags (`loading`, `error`) allow invalid UI
-combinations. For example, loading can remain active even when an error occurs.
-
-**Good model:**  
-UI state is represented as a single discriminated union. Only one valid state
-(idle, loading, success, error) can exist at a time, making the UI predictable
-by design.
+- **Bad model:** multiple boolean flags (`loading`, `error`) can overlap and produce impossible UI states
+- **Good model:** a single discriminated union ensures only one valid state exists at a time
+- **Result:** rendering becomes predictable, transitions are safer, and UI bugs are prevented by design
 
 ---
 
-## Core ideas
+## Why boolean flags fail
 
-- UI state is modeled with TypeScript union types instead of loose objects
-- State transitions are handled with `useReducer`
-- Rendering is driven by a single explicit `status` field
-- Invalid UI combinations are prevented by design through the type system
+Boolean flags seem simple at first, but they scale poorly.
+Once you combine `isLoading`, `hasError`, and `hasData`, you quickly end up with
+states that should never happen (loading + error at the same time).
 
-These ideas are explored through examples focusing on:
-
-- loading vs idle confusion
-- error states that overlap with loading
-- predictable success and error rendering
+This project shows how TypeScript union types can eliminate entire classes of UI state bugs.
 
 ---
 
@@ -80,29 +57,11 @@ These ideas are explored through examples focusing on:
 
 ---
 
-## What this project demonstrates
-
-- How TypeScript can enforce correct UI state modeling
-- Why reducer-driven state transitions are safer than ad-hoc boolean flags
-- How explicit UI states simplify rendering logic
-- How broken UI states emerge from implicit state modeling
-
----
-
 ## Tech stack
 
 - React
 - TypeScript
 - Vite
-- 
----
-
-## Project status
-
-This project is under active development.
-
-The core ideas and main examples are in place, but the project is still evolving.
-Further refinements, visual improvements, and additional state modeling examples may be added over time.
 
 ---
 
