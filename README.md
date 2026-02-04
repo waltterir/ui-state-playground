@@ -1,8 +1,8 @@
 # UI State Playground
 
-> ⚠️ **Work in progress**  
-> The core ideas and implementation are in place, but visual assets and final
-> polish (such as demo previews) are still being finalized.
+> ⚠️ **Work in progress**
+> The core ideas and examples are in place,
+> while visual presentation and additional comparisons are still evolving.
 
 A small React + TypeScript project focused on **explicit UI state modeling**.
 
