@@ -38,7 +38,6 @@ obvious when visualized.
 | -------------------------------- | --------------------------------- |
 | ![](./src/assets/./BadModel.gif) | ![](./src/assets/./GoodModel.gif) |
 
-|
 
 **Bad model:**  
 Multiple independent boolean flags (`loading`, `error`) allow invalid UI
@@ -95,17 +94,15 @@ These ideas are explored through examples focusing on:
 - React
 - TypeScript
 - Vite
-
+- 
 ---
 
 ## Project status
 
-This project has reached its intended conclusion.
+This project is under active development.
 
-The goal was to explore and compare different ways of modeling UI state in React
-using TypeScript. That goal has been achieved, and no further features are planned.
-
-The repository is kept as a reference and learning artifact.
+The core ideas and main examples are in place, but the project is still evolving.
+Further refinements, visual improvements, and additional state modeling examples may be added over time.
 
 ---
 
